@@ -38,7 +38,7 @@ const menuItems = [
   { icon: Quote, label: "Citation Generator", href: "/citation" },
   { icon: Bot, label: "RAG Copilot", href: "/copilot" },
   { icon: BarChart3, label: "Visualizer", href: "/visualizer" },
-  { icon: Database, label: "Data Analyzer", href: "/analyzer" },
+  { icon: Database, label: "Data Analyzer", href: "/data" },
 ];
 
 const workspaceItems = [
