@@ -6,8 +6,10 @@ import { Sparkles } from "lucide-react";
 
 export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
   const [isVisible, setIsVisible] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     const timer = setTimeout(() => {
       setIsVisible(false);
       setTimeout(onFinish, 1000); // Wait for fade out animation
@@ -25,29 +27,31 @@ export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
           className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white"
         >
           {/* Floating Particles Simulation */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {[...Array(20)].map((_, i) => (
-              <motion.div
-                key={i}
-                initial={{ 
-                  x: Math.random() * 100 + "%", 
-                  y: Math.random() * 100 + "%",
-                  opacity: 0 
-                }}
-                animate={{ 
-                  y: [null, "-100%"],
-                  opacity: [0, 0.5, 0]
-                }}
-                transition={{ 
-                  duration: Math.random() * 5 + 5, 
-                  repeat: Infinity,
-                  ease: "linear",
-                  delay: Math.random() * 5
-                }}
-                className="absolute w-1 h-1 bg-indigo-200 rounded-full"
-              />
-            ))}
-          </div>
+          {isMounted && (
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              {[...Array(20)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ 
+                    x: Math.random() * 100 + "%", 
+                    y: Math.random() * 100 + "%",
+                    opacity: 0 
+                  }}
+                  animate={{ 
+                    y: [null, "-100%"],
+                    opacity: [0, 0.5, 0]
+                  }}
+                  transition={{ 
+                    duration: Math.random() * 5 + 5, 
+                    repeat: Infinity,
+                    ease: "linear",
+                    delay: Math.random() * 5
+                  }}
+                  className="absolute w-1 h-1 bg-indigo-200 rounded-full"
+                />
+              ))}
+            </div>
+          )}
 
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
