@@ -47,7 +47,7 @@ export const aiService = {
       const text = response.text();
       
       // Basic JSON extraction logic (in a real app, use structured output)
-      const jsonMatch = text.match(/\[.*\]/s);
+      const jsonMatch = text.match(/\[[\s\S]*\]/);
       return jsonMatch ? JSON.parse(jsonMatch[0]) : null;
     } catch (error) {
       console.error("Gemini PPT Generation Error:", error);
